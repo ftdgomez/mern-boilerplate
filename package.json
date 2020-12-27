@@ -6,7 +6,11 @@
   "main": "server.js",
   "scripts": {
     "seeder": "node backend/seeder",
-    "release": "standard-version"
+    "release": "standard-version",
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
