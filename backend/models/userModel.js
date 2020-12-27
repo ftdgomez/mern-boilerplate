@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import ApiKey from '../models/apikeyModel.js'
 
 const userSchema = mongoose.Schema(
   {
@@ -22,14 +23,34 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    apikey: {
+      type: String,
+      required: true
+    }
   },
   {
-    timeStamps: true,
+    timeStamps: true
   }
 )
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
+}
+
+userSchema.methods.checkApiKey = async function (key = null) {
+  if (!key)
+  {
+    return {apikey: null, isAdmin: false}
+  }
+  const apikey = await ApiKey.findOne({value: key})
+  if (!apikey || apikey.isUsed)
+  {
+    return false
+  }
+  else
+  {
+    return {apikey, isAdmin: true}
+  }
 }
 
 userSchema.pre('save', async function (next) {
