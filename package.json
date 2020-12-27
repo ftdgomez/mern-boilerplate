@@ -1,9 +1,11 @@
 {
-  "name": "contract",
+  "name": "mern-boilerplate",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "A mern stack bolerplate",
   "main": "server.js",
+  "repository": "https://github.com/ftdgomez/mern-boilerplate",
+  "author": "Daniel Gomez <dgcodedev@gmail.com>",
   "scripts": {
     "seeder": "node backend/seeder",
     "release": "standard-version",
@@ -13,8 +15,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
