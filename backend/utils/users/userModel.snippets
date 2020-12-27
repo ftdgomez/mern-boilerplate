@@ -1,0 +1,55 @@
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    refid: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isStore: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    address: {
+      type: String,
+      required: false
+    },
+    googleMapsUrl: {
+      type: String,
+      required: false
+    },
+    contactPhone: {
+      type: String,
+      required: false,
+      match: [/([0-9])\w+/g, 'Solo valores numericos.'] // only numerical values
+    },
+    contactMail: {
+      type: String,
+      required: false,
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'] // only email format
+    },
+    hours: {
+      type: [String]
+    },
+    apikey: {
+      type: String,
+      required: false
+    }
+  },
