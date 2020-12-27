@@ -1,4 +1,5 @@
-# Bootstrap project for MERN stack development
+# Boilerplate project for MERN stack projects
+
 > with auth routes out of the box
 
 ## Usage
