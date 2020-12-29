@@ -25,7 +25,8 @@ const userSchema = mongoose.Schema(
     },
     apikey: {
       type: String,
-      required: true
+      required: true,
+      default: null
     }
   },
   {
@@ -37,10 +38,10 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
 }
 
-userSchema.methods.checkApiKey = async function (key = null) {
+userSchema.statics.checkApiKey = async function (key = null) {
   if (!key)
   {
-    return {apikey: null, isAdmin: false}
+    return {apikey: {value: 'none'}, isAdmin: false}
   }
   const apikey = await ApiKey.findOne({value: key})
   if (!apikey || apikey.isUsed)
