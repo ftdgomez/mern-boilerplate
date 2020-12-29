@@ -17,7 +17,10 @@
 By default, if not height is defined on the multipart data, the image
 will be resized to height: 800px width: auto.
 
-Images will be converted on .webp format before be saved.
+Images will be converted on .webp format before saved.
+
+The images are risized by the sharp library. The file size resultant is very low
+if more compression is needed, you can use a library like imagemin.
 
 By default, the upload/file and upload/files routes only accept .pdf format.
 This can be changed on uploadRoutes file.
