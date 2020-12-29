@@ -6,7 +6,17 @@ import {nanoid} from 'nanoid'
 
 const router = express.Router()
 
-const storage = multer.memoryStorage()
+
+const fileStorage = multer.diskStorage({
+    destination(req, file, cb) {
+        cb(null, 'public/files')
+    },
+    filename(req,file,cb){
+        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const imageStorage = multer.memoryStorage()
 
 function checkFileType(file, cb, filetypes) {
     const extname = filetypes.test(path.extname(file.originalname).toLocaleLowerCase())
@@ -18,14 +28,23 @@ function checkFileType(file, cb, filetypes) {
     }
     else
     {
-        return cb('Solo se permite la subida de imagenes.')
+        return cb('Unsoported file format.')
     }
 }
 
 const uploadImages = multer({
-    storage,
+    storage: imageStorage,
     fileFilter: function(req, file, cb){
         const filetypes = /jpg|jpeg|png/
+        checkFileType(file, cb, filetypes)
+    }
+})
+
+const uploadFiles = multer({
+    storage: fileStorage,
+    fileFilter: function(req, file, cb)
+    {
+        const filetypes = /pdf/
         checkFileType(file, cb, filetypes)
     }
 })
@@ -48,6 +67,19 @@ router.post('/images', uploadImages.array('images', 5), async (req, res) => {
     console.log(error);
     res.status(400).json({error: 'Error al subir el archivo.'});
   }
+})
+
+router.post('/files', uploadFiles.array('files', 5), async (req, res) => {
+    const filepaths = []
+    for (let i = 0; i < req.files.length; i++) {
+        const file = req.files[i];
+        filepaths.push(file.path)
+    }
+  res.status(201).json({paths: '/' + filepaths})
+})
+
+router.post('/file', uploadFiles.single('file'), (req, res) => {
+  res.status(201).json({path: `/${req.file.path}`})
 })
 
 export default router
