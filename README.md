@@ -2,6 +2,14 @@
 
 > with auth routes out of the box
 
+## Features
+
+### Backend
+
+- Apikey generator for register admin users
+- CRUD users capability
+- Upload images route (multiple or single)
+
 ## Usage
 
 ### ES Modules in Node

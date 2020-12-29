@@ -5,6 +5,7 @@ import connectDB from './config/db.js'
 import path from 'path' 
 import cors from 'cors'
 import userRoutes from './routes/userRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development')
 app.use(express.json())
 
 app.use('/api/users', userRoutes)
+app.use('/api/upload', uploadRoutes)
 
 const __dirname = path.resolve()
 app.use('/public', express.static(path.join(__dirname, '/public')))
