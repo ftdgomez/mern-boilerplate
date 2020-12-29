@@ -31,8 +31,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
-  
-  const apikey = await User.checkApikey(req.body.apikey)
+  const apikey = await User.checkApiKey(req.body.apikey)
 
   if (!apikey)
   {
@@ -48,19 +47,21 @@ const registerUser = asyncHandler(async (req, res) => {
       throw new Error('Sorry, you cant use that email.')
     }
     try {
+      console.log(apikey)
       const user = await User.create({
         name,
         email,
         password,
         isAdmin: apikey.isAdmin,
-        apikey: apikey.apikey
+        apikey: apikey.apikey.value
       })
       if (user) {
         if (apikey.isAdmin)
         {
-            apikey.isUsed = true
-            apikey.usedBy = user._id
-            await apikey.save()
+            const apikeyUsed = await ApiKey.findOne({_id: apikey.apikey._id})
+            apikeyUsed.isUsed = true
+            apikeyUsed.usedBy = user._id
+            await apikeyUsed.save()
         }
         res.status(201).json({
           _id: user._id,
@@ -169,21 +170,13 @@ const getUserById = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id)
-
+  let user = await User.findById(req.params.id)
   if (user) {
-    user.name = req.body.name || user.name
-    user.email = req.body.email || user.email
-    user.isAdmin = req.body.isAdmin
-
-    const updatedUser = await user.save()
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    })
+    for (const value in req.body)
+    {
+      user[value] = req.body[value]
+    }
+    res.json(await user.save())
   } else {
     res.status(404)
     throw new Error('User not found')
