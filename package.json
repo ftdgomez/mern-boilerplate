@@ -1,7 +1,7 @@
 {
   "name": "mern-boilerplate",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A mern stack bolerplate",
   "main": "server.js",
   "repository": "https://github.com/ftdgomez/mern-boilerplate",
