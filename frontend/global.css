@@ -1,0 +1,33 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	p {
+		@apply text-gray-700;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply text-gray-800;
+	}
+}
+
+@layer components {
+	.container {
+		@apply max-w-5xl mx-auto py-4 px-8;
+	}
+	.container-xl {
+		@apply max-w-7xl mx-auto py-4 px-8;
+	}
+	.title {
+		@apply text-2xl font-bold;
+	}
+	.subtitle {
+		@apply text-lg font-bold my-2;
+	}
+}
