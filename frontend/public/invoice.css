@@ -1,0 +1,22 @@
+.header-grid-pdf{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+.header-grid-pdf h4{
+    font-size: 16px;
+    font-weight: 300;
+}
+*{
+    color: #3f3f3f;
+}
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

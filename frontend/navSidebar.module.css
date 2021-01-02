@@ -1,0 +1,62 @@
+@media screen and (max-width: 1024px) {
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		height: 100vh;
+		background-color: white;
+		width: 70%;
+		max-width: 320px;
+		display: flex;
+		flex-direction: column;
+		border-right: 1px solid #e1e1e1;
+		z-index: 999;
+		transition: 0.4s ease;
+	}
+	.navbar[active='true'] {
+		left: 0;
+	}
+	.bgToggler {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	.bgToggler[active='true'] {
+		display: block;
+	}
+	.navbar a {
+		display: flex;
+		width: 100%;
+		border-bottom: 1px solid #e1e1e1;
+		padding: 1em;
+	}
+	.profile {
+		margin-top: auto;
+		align-items: center;
+		border-top: 1px solid #e1e1e1;
+		background-color: #e3e3e3;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.navbar {
+		position: inherit;
+		background-color: white;
+		display: flex;
+		align-items: center;
+	}
+	.bgToggler {
+		display: none;
+	}
+	.navbar a {
+		display: flex;
+		@apply ml-4;
+	}
+	.profile {
+		@apply flex items-center border pl-2 py-0 bg-primary text-white rounded-full hover:bg-secondary hover:text-white;
+	}
+}

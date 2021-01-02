@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FormBody, FormItem, FormPage } from '../components/Form';
 import { Button } from '../components/Button';
 import Image from 'next/image';
-import { StyledLink } from '../components/StyledLink';
 import { useForm } from '../hooks/useForm.js';
 import { UserContext } from '../context/userContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { Link } from '../components/Link';
+
 const register = () => {
 	const router = useRouter();
 	const [values, handleChange] = useForm({
@@ -20,8 +21,12 @@ const register = () => {
 	});
 
 	const [error, setError] = useState(false);
-	const { handleUserInfo } = useContext(UserContext);
-
+	const { userInfo, setUserInfo } = useContext(UserContext);
+	useEffect(() => {
+		if (userInfo || localStorage.getItem('userInfo')) {
+			router.push('/');
+		}
+	});
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (
@@ -52,7 +57,7 @@ const register = () => {
 					values,
 					config
 				);
-				handleUserInfo(data);
+				setUserInfo(data);
 				if (values.remember === 'true') {
 					localStorage.setItem('userInfo', JSON.stringify(data));
 				}
@@ -67,13 +72,14 @@ const register = () => {
 			<main className='col-span-3'>
 				<div className='flex items-center justify-center w-full h-full'>
 					<FormBody handler={handleSubmit}>
-						<Image src='/logo-default.png' height={123} width={260} />
+						<Link to='/'>
+							<Image src='/logo-default.png' height={123} width={260} />
+						</Link>
 						<h1 className='text-xl text-gray-700 font-bold'>
 							Registrar Una Cuenta Nueva
 						</h1>
 						<p className='mb-4 text-gray-500 text-sm'>
-							¿Ya tienes una cuenta?{' '}
-							<StyledLink to='login'>Inicia Sesión</StyledLink>
+							¿Ya tienes una cuenta? <Link to='login'>Inicia Sesión</Link>
 						</p>
 						<FormItem
 							name='name'
@@ -122,9 +128,9 @@ const register = () => {
 								htmlFor='cookies'
 								className='ml-2 mb-4 block text-sm text-gray-600'>
 								Acepto las{' '}
-								<StyledLink to='/politicas-de-privacidad'>
+								<Link to='/politicas-de-privacidad'>
 									Políticas de privacidad
-								</StyledLink>
+								</Link>
 							</label>
 						</div>
 						<div className='flex items-center'>

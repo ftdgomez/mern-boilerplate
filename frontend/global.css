@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 @layer base {
-	p {
+	p,
+	a {
 		@apply text-gray-700;
 	}
 	h1,
@@ -15,19 +16,25 @@
 	h6 {
 		@apply text-gray-800;
 	}
+	,
+	a:hover {
+		@apply text-primary;
+	}
 }
 
-@layer components {
-	.container {
-		@apply max-w-5xl mx-auto py-4 px-8;
-	}
-	.container-xl {
-		@apply max-w-7xl mx-auto py-4 px-8;
-	}
-	.title {
-		@apply text-2xl font-bold;
-	}
-	.subtitle {
-		@apply text-lg font-bold my-2;
-	}
+.container {
+	@apply max-w-5xl mx-auto py-4 px-8;
+}
+.container-xl {
+	@apply max-w-7xl mx-auto py-4 px-8;
+}
+.title {
+	@apply text-2xl font-bold;
+}
+.subtitle {
+	@apply text-lg font-bold my-2;
+}
+
+.currentPage {
+	@apply text-primary;
 }

@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FormBody, FormItem, FormPage } from '../components/Form';
 import { Button } from '../components/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { StyledLink } from '../components/StyledLink';
+import { Link } from '../components/Link';
 import { useForm } from '../hooks/useForm';
 import { UserContext } from '../context/userContext';
 import { toast } from 'react-toastify';
@@ -19,8 +19,12 @@ const login = () => {
 	});
 
 	const [error, setError] = useState(false);
-	const { handleUserInfo } = useContext(UserContext);
-
+	const { userInfo, setUserInfo } = useContext(UserContext);
+	useEffect(() => {
+		if (userInfo || localStorage.getItem('userInfo')) {
+			router.push('/');
+		}
+	});
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (values.email === '' || values.password === '') {
@@ -38,7 +42,7 @@ const login = () => {
 					values,
 					config
 				);
-				handleUserInfo(data);
+				setUserInfo(data);
 				if (values.remember === 'true') {
 					localStorage.setItem('userInfo', JSON.stringify(data));
 				}
@@ -57,11 +61,13 @@ const login = () => {
 			<main className='col-span-3'>
 				<div className='flex items-center justify-center w-full h-full'>
 					<FormBody handler={handleSubmit}>
-						<Image src='/logo-default.png' height={123} width={260} />
+						<Link to='/'>
+							<Image src='/logo-default.png' height={123} width={260} />
+						</Link>
+
 						<h1 className='text-xl text-gray-700 font-bold'>¡Hola de nuevo!</h1>
 						<p className='mb-4 text-gray-500 text-sm'>
-							¿No tienes una cuenta?{' '}
-							<StyledLink to='/register'>Regístrate</StyledLink>
+							¿No tienes una cuenta? <Link to='/register'>Regístrate</Link>
 						</p>
 						<FormItem
 							name='email'
