@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { FormBody, FormItem, FormPage } from '../components/Form';
-import { Button } from '../components/Button';
+import { FormBody, FormItem, FormPage, Button, Link } from '../ui/components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Link } from '../components/Link';
 import { useForm } from '../hooks/useForm';
 import { UserContext } from '../context/userContext';
 import { toast } from 'react-toastify';

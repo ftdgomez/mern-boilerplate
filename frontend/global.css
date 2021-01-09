@@ -38,3 +38,13 @@
 .currentPage {
 	@apply text-primary;
 }
+.bg-100 {
+	background-size: 100%;
+	transition: 0.4s ease-in;
+	@apply bg-primary;
+	mix-blend-mode: multiply;
+}
+
+.bg-100:hover {
+	background-size: 105%;
+}

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from '../components/Link';
 import { UserContext } from '../context/userContext';
+import { Link } from '../ui/components';
 import Image from 'next/image';
 import styles from '../navSidebar.module.css';
 

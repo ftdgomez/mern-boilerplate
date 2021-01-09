@@ -1,13 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { FormBody, FormItem, FormPage } from '../components/Form';
-import { Button } from '../components/Button';
+import { FormBody, FormItem, FormPage, Button, Link } from '../ui/components';
 import Image from 'next/image';
 import { useForm } from '../hooks/useForm.js';
 import { UserContext } from '../context/userContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { Link } from '../components/Link';
 
 const register = () => {
 	const router = useRouter();
