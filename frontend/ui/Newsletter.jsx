@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, FormItem } from './components';
 import { useForm } from '../hooks/useForm';
 
-export const Newsletter = () => {
+export const Newsletter = ({ title, btnText }) => {
 	const [data, setData] = useForm({ email: '', first_name: '' });
 	const handleSuscribe = (e) => {
 		e.preventDefault();
@@ -29,8 +30,7 @@ export const Newsletter = () => {
 		<div className='bg-gray-50'>
 			<div className='container md:flex justify-between items-center'>
 				<h2 className='text-3xl md:w-96 font-extrabold tracking-tight text-gray-900 sm:text-4xl'>
-					<span className='block'>You like what</span>
-					<span className='block text-primary'>You see?</span>
+					{title}
 				</h2>
 				<form
 					onSubmit={handleSuscribe}
@@ -53,9 +53,24 @@ export const Newsletter = () => {
 							value={data.email}
 						/>
 					</div>
-					<Button className='flex-1 md:mb-4 md:ml-4'>Suscribirse</Button>
+					<Button className='flex-1 md:mb-4 md:ml-4'>{btnText}</Button>
 				</form>
 			</div>
 		</div>
 	);
+};
+
+Newsletter.defaultProps = {
+	btnText: 'Suscribe',
+	title: (
+		<>
+			<span className='block'>You like</span>
+			<span className='block text-primary'>What You See?</span>
+		</>
+	),
+};
+
+Newsletter.propTypes = {
+	title: PropTypes.node,
+	btnText: PropTypes.string,
 };
