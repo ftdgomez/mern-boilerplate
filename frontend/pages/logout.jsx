@@ -8,6 +8,7 @@ const logout = () => {
 	const router = useRouter();
 	useEffect(() => {
 		localStorage.removeItem('userInfo');
+		localStorage.removeItem('bookmarks');
 		setUserInfo(null);
 		router.push('/');
 	}, []);
