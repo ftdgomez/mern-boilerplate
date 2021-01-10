@@ -1,7 +1,7 @@
 import React from 'react';
 
 const politicasdeprivacidad = () => {
-	const siteName = 'Este sitio web';
+	const siteName = '{siteName}';
 	return (
 		<div className='bg-primary'>
 			<main className='container'>
@@ -9,8 +9,8 @@ const politicasdeprivacidad = () => {
 					<h1 className='title'>Políticas de Privacidad</h1>
 					<p>
 						El presente Política de Privacidad establece los términos en que
-						Este sitio web usa y protege la información que es proporcionada por
-						sus usuarios al momento de utilizar su sitio web. Esta compañía está
+						{siteName} usa y protege la información que es proporcionada por sus
+						usuarios al momento de utilizar su sitio web. Esta compañía está
 						comprometida con la seguridad de los datos de sus usuarios. Cuando
 						le pedimos llenar los campos de información personal con la cual
 						usted pueda ser identificado, lo hacemos asegurando que sólo se
@@ -39,7 +39,7 @@ const politicasdeprivacidad = () => {
 						consideremos relevante para usted o que pueda brindarle algún
 						beneficio, estos correos electrónicos serán enviados a la dirección
 						que usted proporcione y podrán ser cancelados en cualquier momento.
-						Este sitio web está altamente comprometido para cumplir con el
+						{siteName} está altamente comprometido para cumplir con el
 						compromiso de mantener su información segura. Usamos los sistemas
 						más avanzados y los actualizamos constantemente para asegurarnos que
 						no exista ningún acceso no autorizado.
@@ -70,10 +70,10 @@ const politicasdeprivacidad = () => {
 					</p>
 					<h2 className='subtitle'>Enlaces a Terceros</h2>
 					<p>
-						Este sitio web pudiera contener en laces a otros sitios que pudieran
-						ser de su interés. Una vez que usted de clic en estos enlaces y
-						abandone nuestra página, ya no tenemos control sobre al sitio al que
-						es redirigido y por lo tanto no somos responsables de los términos o
+						{siteName} pudiera contener en laces a otros sitios que pudieran ser
+						de su interés. Una vez que usted de clic en estos enlaces y abandone
+						nuestra página, ya no tenemos control sobre al sitio al que es
+						redirigido y por lo tanto no somos responsables de los términos o
 						privacidad ni de la protección de sus datos en esos otros sitios
 						terceros. Dichos sitios están sujetos a sus propias políticas de
 						privacidad por lo cual es recomendable que los consulte para
@@ -90,8 +90,8 @@ const politicasdeprivacidad = () => {
 						cancelarla en cualquier momento. Esta compañía no venderá, cederá ni
 						distribuirá la información personal que es recopilada sin su
 						consentimiento, salvo que sea requerido por un juez con un orden
-						judicial. Este sitio web Se reserva el derecho de cambiar los
-						términos de la presente Política de Privacidad en cualquier momento.
+						judicial. {siteName} Se reserva el derecho de cambiar los términos
+						de la presente Política de Privacidad en cualquier momento.
 					</p>
 				</div>
 			</main>
