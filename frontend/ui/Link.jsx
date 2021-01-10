@@ -1,4 +1,6 @@
 import NextLink from 'next/link';
+import PropTypes from 'prop-types';
+
 import { useRouter } from 'next/router';
 
 export const Link = ({ to, children, className, title }) => {
@@ -14,4 +16,14 @@ export const Link = ({ to, children, className, title }) => {
 			</a>
 		</NextLink>
 	);
+};
+
+Link.defaultProps = {
+	to: '/',
+};
+
+Link.propTypes = {
+	to: PropTypes.string,
+	className: PropTypes.string,
+	title: PropTypes.string,
 };
